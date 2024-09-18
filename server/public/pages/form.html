@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hero Lab</title>
+  </head>
+  <body>
+    <h1>Contact Form</h1>
+    <form action="/submit-form" method="POST">
+      <label for="name">Hero Name:</label>
+      <input type="text" id="name" name="name" required /><br /><br />
+      <label for="power">Power:</label>
+      <input id="power" name="power" required /><br /><br />
+      <label for="universe">Universe:</label><br />
+      <input
+        id="universe"
+        name="universe"
+        required
+      ></input
+      ><br /><br />
+      <input type="submit" value="Submit" />
+    </form>
+    <h1>Hero Management</h1>
+    <form id="updateForm">
+      <label for="currentName">Current name:</label>
+      <input type="text" id="currentName" required /><br /><br />
+      <label for="currentUniverse">Current Universe:</label>
+      <input id="currentUniverse" required /><br /><br />
+      <label for="newName">New name:</label>
+      <input type="text" id="newName" required /><br /><br />
+      <label for="newPower">New Power:</label>
+      <input id="newPower" required /><br /><br />
+      <label for="newUniverse">New Universe:</label>
+      <input type="text" id="newUniverse" required /><br /><br />
+      <button type="submit">Update Hero</button>
+    </form>
+    <h1>Show Heroes</h1>
+    <table id="usersTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Powers</th>
+          <th>Universe</th>
+        </tr>
+      </thead>
+      <tbody id="userTableBody">
+        <!-- data of users will be rendered here -->
+      </tbody>
+    </table>
+    <script>
+      document
+        .getElementById("updateForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const currentName = document.getElementById("currentName").value;
+          const currentUniverse = document.getElementById("currentUniverse").value;
+          const newName = document.getElementById("newName").value;
+          const newPower = document.getElementById("newPower").value;
+          const newUniverse = document.getElementById("newUniverse").value;
+          try {
+            const response = await fetch(
+              `/update-hero/${currentName}/${currentUniverse}`,
+              {
+                method: "PUT",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ newName, newPower, newUniverse }),
+              }
+            );
+            const data = await response.json();
+            console.log(data);
+            renderUsers();
+            // alert("Message is: " + data.message);
+          } catch (error) {
+            alert("Error updating user: " + error.message);
+          }
+        });
+      async function fetchUsers() {
+        try {
+          const response = await fetch("/heroes");
+          if (!response.ok) {
+            throw new Error("Error fetching users. Response not ok");
+          }
+          // there could be an error getting response/fetching the endpoint
+          console.log(response);
+          const heroes = await response.json();
+          // there could be an error parsing the response
+          // console.log(users);
+          return heroes;
+        } catch (error) {
+          console.error("There was a problem");
+          console.error(error);
+        }
+      }
+
+      async function renderUsers() {
+        const tableBody = document.getElementById("userTableBody");
+        tableBody.innerHTML = "";
+        try {
+          const heroes = await fetchUsers();
+          if (Array.isArray(heroes) && heroes.length > 0) {
+            heroes.forEach((hero) => {
+              const row = `<tr><td>${hero.name}</td><td>${hero.power}</td><td>${hero.universe}</td></tr>`;
+              tableBody.innerHTML += row;
+            });
+          }
+        } catch (error) {}
+      }
+      document.addEventListener("DOMContentLoaded", renderUsers);
+    </script>
+  </body>
+</html>
