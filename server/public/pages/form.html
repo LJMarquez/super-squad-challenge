@@ -4,36 +4,235 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hero Lab</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+
+      body {
+        margin: 0;
+        background-color: slateblue;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 3vw;
+        color: white;
+        font-family: "Bebas Neue", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      label {
+        color: white;
+        font-family: "Lexend", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: regular;
+        font-style: normal;
+      }
+
+      input {
+        font-family: "Lexend", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: regular;
+        font-style: normal;
+      }
+
+      #create-form, #updateForm, #delete-user {
+        background-color: navy;
+        width: 60vh;
+        margin: auto;
+        padding: 3vh;
+        border-radius: 5vh;
+      }
+
+      .input-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        div {
+          margin: 1vh;
+        }
+      }
+
+      .submit-wrapper {
+        text-align: center;
+      }
+      
+      .submit {
+        background-color: goldenrod;
+        border: 0.5vh solid black;
+        border-radius: 3vh;
+        padding: 1vh;
+        padding-left: 2vh;
+        padding-right: 2vh;
+        font-weight: 600;
+        font-size: 3vh;
+        /* color: white; */
+        width: auto;
+        /* margin: auto; */
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        font-family: "Lexend", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: regular;
+        font-style: normal;
+        transition: color .3s, background-color .3s, border .3s;
+      }
+
+      .submit:hover {
+        color: white;
+        background-color: navy;
+        border: 0.5vh solid white;
+      }
+
+      .submit:active {
+        animation: bounce 3s ease forwards;
+      }
+
+      .create-input, .update-input, .delete-input {
+          height: 5vh;
+      }
+
+      .create-label, .update-label, .delete-label {
+          height: 5vh;
+          text-align: right;
+          display: block;
+      }
+
+      #usersTable {
+        background-color: navy;
+        color: white;
+        margin: auto;
+        padding: 5vh;
+        font-family: "Lexend", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: regular;
+        font-style: normal;
+        border-radius: 5vh;
+        margin-bottom: 10vh;
+      }
+
+      th, td, tr, tbody {
+        text-align: left;
+        margin: 2vh;
+        padding: 1vh;
+      }
+
+      button:hover {
+        cursor: pointer;
+      }
+
+      @keyframes bounce {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(100px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+
+    </style>
   </head>
   <body>
-    <h1>Contact Form</h1>
-    <form action="/submit-form" method="POST">
-      <label for="name">Hero Name:</label>
-      <input type="text" id="name" name="name" required /><br /><br />
-      <label for="power">Power:</label>
-      <input id="power" name="power" required /><br /><br />
-      <label for="universe">Universe:</label><br />
-      <input
+    <h1>Hero Creator</h1>
+    <form action="/submit-form" method="POST" id="create-form">
+      <div class="input-wrapper">
+      <div>
+        <div class="create-label">
+          <label for="name">Hero Name:</label>
+        </div>
+        <div class="create-label">
+          <label for="power">Power:</label>
+        </div>
+        <div class="create-label">
+          <label for="universe">Universe:</label><br />
+        </div>
+      </div>
+      <div>
+        <div class="create-input">
+      <input  type="text" id="name" name="name" required /><br /><br />
+        </div>
+        <div class="create-input">
+      <input  id="power" name="power" required /><br /><br />
+        </div>
+        <div class="create-input">
+      <input  
         id="universe"
         name="universe"
         required
-      ></input
-      ><br /><br />
-      <input type="submit" value="Submit" />
+      ></input/>
+        </div>
+      </div>
+      </div>
+      <!-- <input type="submit" value="Submit" class="submit"/> -->
+      <div class="submit-wrapper">
+        <button type="submit" class="submit">Submit</button>
+      </div>
     </form>
     <h1>Hero Management</h1>
     <form id="updateForm">
-      <label for="currentName">Current name:</label>
-      <input type="text" id="currentName" required /><br /><br />
-      <label for="currentUniverse">Current Universe:</label>
-      <input id="currentUniverse" required /><br /><br />
-      <label for="newName">New name:</label>
-      <input type="text" id="newName" required /><br /><br />
-      <label for="newPower">New Power:</label>
-      <input id="newPower" required /><br /><br />
-      <label for="newUniverse">New Universe:</label>
-      <input type="text" id="newUniverse" required /><br /><br />
-      <button type="submit">Update Hero</button>
+      <div class="input-wrapper">
+        <div>
+          <div class="update-label">
+            <label for="currentName">Current name:</label>
+          </div>
+          <div class="update-label">
+            <label for="currentUniverse">Current Universe:</label>
+          </div>
+          <div class="update-label">
+            <label for="newName">New name:</label>
+          </div>
+          <div class="update-label">
+            <label for="newPower">New Power:</label>
+          </div>
+          <div class="update-label">
+            <label for="newUniverse">New Universe:</label>
+          </div>
+        </div>
+        <div>
+          <div class="update-input">
+            <input type="text" id="currentName" required /><br /><br />
+          </div>
+          <div class="update-input">
+            <input id="currentUniverse" required /><br /><br />
+          </div>
+          <div class="update-input">
+            <input type="text" id="newName" required /><br /><br />
+          </div>
+          <div class="update-input">
+            <input id="newPower" required /><br /><br />
+          </div>
+          <div class="update-input">
+            <input type="text" id="newUniverse" required /><br /><br />
+          </div>
+        </div>
+      </div>
+      <div class="submit-wrapper">
+        <button class="submit" type="submit">Update Hero</button>
+      </div>
+    </form>
+    <h1>Delete Hero</h1>
+    <form id="delete-user">
+    <div class="input-wrapper">
+      <div class="delete-label">
+      <label for="delete-name">Name:</label>
+      </div>
+      <div class="delete-input">
+      <input type="text" id="delete-name" />
+      </div>
+      <div class="delete-label">
+      <label for="delete-universe">Universe:</label>
+      </div>
+      <div class="delete-input">
+      <input type="text" id="delete-universe" />
+      </div>
+    </div>
+    <div class="submit-wrapper">
+      <button type="submit" class="submit">Delete Hero</button>
+    </div>
     </form>
     <h1>Show Heroes</h1>
     <table id="usersTable">
@@ -70,13 +269,48 @@
               }
             );
             const data = await response.json();
-            console.log(data);
             renderUsers();
+            if (data.reload) {
+                window.location.reload();
+            }
+              // window.location.reload();
             // alert("Message is: " + data.message);
           } catch (error) {
             alert("Error updating user: " + error.message);
           }
         });
+
+      document
+        .getElementById("delete-user")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const name = document.getElementById("delete-name").value;
+          const universe = document.getElementById("delete-universe").value;
+          try {
+            const response = await fetch(`/hero/${name}/${universe}`, {
+              method: "DELETE",
+                // headers: {
+                //   "Content-Type": "application/json",
+                // }
+            });
+            if (!response.ok) {
+               throw new Error("Problem fetching delete endpoint");
+            }
+            const data = await response.json();
+            // console.log(data);
+            renderUsers();
+            if (data.reload) {
+                window.location.reload();
+            }
+          } catch (error) {
+            console.error("there was a problem, skill issue" + error.message + "GG bro. Keep mogging.");
+          }
+          renderUsers();
+          if (data.reload) {
+              window.location.reload();
+          }
+        });
+
       async function fetchUsers() {
         try {
           const response = await fetch("/heroes");
@@ -84,7 +318,7 @@
             throw new Error("Error fetching users. Response not ok");
           }
           // there could be an error getting response/fetching the endpoint
-          console.log(response);
+          // console.log(response);
           const heroes = await response.json();
           // there could be an error parsing the response
           // console.log(users);
@@ -102,6 +336,7 @@
           const heroes = await fetchUsers();
           if (Array.isArray(heroes) && heroes.length > 0) {
             heroes.forEach((hero) => {
+              // console.log(hero)
               const row = `<tr><td>${hero.name}</td><td>${hero.power}</td><td>${hero.universe}</td></tr>`;
               tableBody.innerHTML += row;
             });

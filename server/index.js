@@ -98,11 +98,61 @@ app.put('/update-hero/:currentName/:currentUniverse', async (req, res) => {
             console.log(heroes);
             await fs.writeFile(dataPath, JSON.stringify(heroes, null, 2));
 
-            res.status(200).json({ message: `You sent ${newName}, ${newPower}, and ${newUniverse}` });
+            // res.redirect('/form');
+            res.status(200).json({ message: `You sent ${newName}, ${newPower}, and ${newUniverse}`, reload: true });
         }
     } catch (error) {
         console.error('Error updating hero:', error);
         res.status(500).send('An error occurred while updating the hero.');
+    }
+});
+
+app.delete('/hero/:name/:universe', async (req, res) => {
+    try {
+        // console.log(req.params);
+        // console.log(req.params.name);
+        // console.log(req.params.email);
+        // const name = req.params.name;
+        // const email = req.params.email;
+        const { name, universe } = req.params;
+        // console.log req.params
+        // then cache returned name and email
+        // as destructured variables from params
+
+        // initalize an empty array of 'users'
+        let heroes = [];
+
+        try {
+            // try to read the users.json file and cache as data
+            const data = await fs.readFile(dataPath, 'utf8');
+            // parse the data
+            heroes = JSON.parse(data);
+        } catch (error) {
+            return res.status(404).send("File data not found");
+        }
+
+        // cache the userIndex based on a matching name and email
+        let heroIndex = heroes.findIndex(hero => hero.name === name && hero.universe === universe);
+        if (heroIndex === -1) {
+            return res.sendStatus(404).send("Hero not found");
+        }
+        heroes.splice(heroIndex, 1);
+        // console.log(heroIndex);
+        // console.log(heroes);
+        try {
+            await fs.writeFile(dataPath, JSON.stringify(heroes, null, 2));
+            res.status(200).json({ message: "Success", reload: true });
+            // res.redirect('/form');
+        } catch (error) {
+            console.error("Failed to write to database");
+        }
+        return res.send("Succussfully eliminated hero");
+
+        // splice the users array with the intended delete name and email
+
+        // send a success deleted message
+    } catch (error) {
+        console.error(error.message);
     }
 });
 

@@ -1,46 +1,26 @@
 [
   {
-    "name": "a",
-    "power": "super cringe",
-    "universe": "DC"
-  },
-  {
-    "name": "bobbbbb",
-    "power": "P"
-  },
-  {
-    "name": "Rob",
-    "power": "Flower Power",
+    "name": "Spider Man",
+    "power": [
+      "Poo",
+      "Web",
+      "Stronk"
+    ],
     "universe": "Marvel"
   },
   {
-    "name": "aodsijf",
-    "power": "dajfoi",
-    "universe": "doisjg"
-  },
-  {
-    "name": "Bradd",
-    "power": "Poo",
-    "universe": {}
-  },
-  {
-    "name": "Bobby",
-    "power": "Splendid",
-    "universe": "DC"
-  },
-  {
-    "name": "ala",
+    "name": "Hello",
     "power": [
-      "bomb"
+      "Hi",
+      "Hello"
     ],
-    "universe": "aosidf"
+    "universe": "Hello"
   },
   {
-    "name": "Timmy",
+    "name": "qer",
     "power": [
-      "Strong",
-      "Speed"
+      "qewr"
     ],
-    "universe": "DC"
+    "universe": "obobobobo"
   }
 ]

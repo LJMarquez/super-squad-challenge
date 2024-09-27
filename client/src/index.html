@@ -1,12 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home Page</title>
-</head>
-<body>
-    Hello World!!!
-    <a href="/form"><button>Go to Hero Lab!</button></a>
-</body>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+      
+      body {
+        margin: 0;
+        background-color: slateblue;
+      }
+
+      button {
+        background-color: goldenrod;
+        border: 0.5vh solid black;
+        border-radius: 3vh;
+        padding: 1vh;
+        padding-left: 2vh;
+        padding-right: 2vh;
+        font-weight: 600;
+        font-size: 3vh;
+        /* color: white; */
+        width: auto;
+        /* margin: auto; */
+        text-align: center;
+        font-family: "Lexend", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: regular;
+        font-style: normal;
+        transition: color 0.3s, background-color 0.3s, border 0.3s;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 3vw;
+        color: white;
+        font-family: "Bebas Neue", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      .button-wrapper {
+        text-align: center;
+        margin: 3vh;
+      }
+
+      button:hover {
+        cursor: pointer;
+      }
+
+    </style>
+  </head>
+  <body>
+    <h1>Welcome To The Hero Lab</h1>
+    <div class="button-wrapper">
+        <a href="/form"><button>Enter</button></a>
+    </div>
+  </body>
 </html>
