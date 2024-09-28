@@ -108,18 +108,40 @@
         font-optical-sizing: auto;
         font-weight: regular;
         font-style: normal;
+        font-size: 1.2em;
         border-radius: 5vh;
         margin-bottom: 10vh;
+        height: 40px;
+        overflow: scroll;
       }
 
       th, td, tr, tbody {
         text-align: left;
-        margin: 2vh;
-        padding: 1vh;
+        margin: jvh;
+        padding: 1.5vh;
       }
 
       button:hover {
         cursor: pointer;
+      }
+
+      #page-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .col {
+        text-align: center;
+      }
+
+      #forms {
+
+      }
+
+      #user-data {
+        margin-top: 7vh;
+        position: fixed;
+        margin-left: 4vw;
       }
 
       @keyframes bounce {
@@ -137,6 +159,8 @@
     </style>
   </head>
   <body>
+    <div id="page-wrapper">
+      <div class="col" id="forms">
     <h1>Hero Creator</h1>
     <form action="/submit-form" method="POST" id="create-form">
       <div class="input-wrapper">
@@ -234,6 +258,9 @@
       <button type="submit" class="submit">Delete Hero</button>
     </div>
     </form>
+      </div>
+      <div class="col">
+        <div id="user-data">
     <h1>Show Heroes</h1>
     <table id="usersTable">
       <thead>
@@ -247,6 +274,9 @@
         <!-- data of users will be rendered here -->
       </tbody>
     </table>
+        </div>
+      </div>
+    </div>
     <script>
       document
         .getElementById("updateForm")
